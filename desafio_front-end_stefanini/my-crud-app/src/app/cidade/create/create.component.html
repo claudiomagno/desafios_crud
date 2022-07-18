@@ -1,0 +1,59 @@
+<div class="container">
+  <h1>Criar nova cidade</h1>
+
+  <a href="#" routerLink="/cidade/index" class="btn btn-primary">Voltar</a>
+
+  <div class="card">
+    <div class="card-body">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="form-group">
+          <label for="nome">nome:</label>
+          <input
+              formControlName="nome"
+              id="nome"
+              type="text"
+              class="form-control">
+          <div *ngIf="f.nome.touched && f.nome.invalid" class="alert alert-danger">
+              <div *ngIf="f.nome.errors.required">nome is required.</div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="uf">UF</label>
+
+          <ng-select  class="form-control"  [hideSelected]="true" [closeOnSelect]="true" [items]="listUfs"  bindLabel="nome"
+          bindValue="uf"  [searchable]="false" [multiple]="false" formControlName="uf">
+
+           <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+             <div class="form-control bg-info">
+                 <h6 class="card-text" >{{item.uf}}</h6>
+             </div>
+               <ng-template  ng-label-tmp let-item="item">
+                 <div class="form-group">
+                  {{item.uf}}
+                 </div>
+
+               </ng-template>
+           </ng-template>
+
+         </ng-select>
+
+
+
+
+
+          <div *ngIf="f.uf.touched && f.uf.invalid" class="alert alert-danger">
+              <div *ngIf="f.uf.errors.required">UF is required.</div>
+          </div>
+      </div>
+
+      <div class="float-right">
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+  </form>
+
+  </div>
+  </div>
+
+</div>

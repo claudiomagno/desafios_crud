@@ -1,0 +1,24 @@
+<div class="container">
+  <h4>Cidade CRUD </h4>
+
+  <a href="#" routerLink="/cidade/create/" class="btn btn-success">Nova Cidade</a>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>UF</th>
+      <th width="220px">Ação</th>
+    </tr>
+    <tr *ngFor="let cidade of Cidades">
+      <td>{{ cidade.id }}</td>
+      <td>{{ cidade.nome }}</td>
+      <td>{{ cidade.uf }}</td>
+      <td>
+        <a href="#" [routerLink]="['/cidade/', cidade.id, 'view']" class="bg-info btn btn-info">View</a>
+        <a href="#" [routerLink]="['/cidade/', cidade.id, 'edit']" class="bg-primary btn btn-primary">Edit</a>
+        <button type="button" (click)="deleteCidade(cidade.id)" class="bg-danger btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

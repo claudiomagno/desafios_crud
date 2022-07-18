@@ -1,0 +1,95 @@
+<div class="container">
+  <h1>Criar pessoa</h1>
+
+  <a href="#" routerLink="/pessoa/index" class="btn btn-primary">Voltar</a>
+
+  <div class="card">
+    <div class="card-body">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="form-group">
+          <label for="nome">nome:</label>
+          <input
+              formControlName="nome"
+              id="nome"
+              type="text"
+              class="form-control">
+          <div *ngIf="f.nome.touched && f.nome.invalid" class="alert alert-danger">
+              <div *ngIf="f.nome.errors.required">nome is required.</div>
+          </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="cpf">CPF:</label>
+        <input
+            formControlName="cpf" placeholder="000.000.000-00"
+            id="cpf" [textMask]="{mask: mask}"
+            type="text" class="form-control">
+        <div *ngIf="f.cpf.touched && f.cpf.invalid" class="alert alert-danger">
+            <div *ngIf="f.cpf.errors.required">cpf is required.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="idade">Idade:</label>
+      <input
+          formControlName="idade"
+          id="idade"
+          type="number"
+          class="form-control">
+      <div *ngIf="f.idade.touched && f.idade.invalid" class="alert alert-danger">
+          <div *ngIf="f.idade.errors.required">idade is required.</div>
+      </div>
+  </div>
+
+      <div class="form-group">
+          <label for="id_Cidade">Cidade</label>
+
+          <!--
+          <input
+              formControlName="uf"
+              id="uf"
+              type="text"
+              class="form-control">
+
+    <select formControlName="id_Cidade" class="form-control">
+              <option disabled>Selecione Cidade</option>
+              <option *ngFor="let cidade of listCidade"> {{cidade.nome}} / {{cidade.uf}}</option>
+          </select>
+
+               -->
+
+               <ng-select  class="form-control"  [hideSelected]="true" [closeOnSelect]="true" [items]="listCidade"  bindLabel="nome"
+                 bindValue="id"  [searchable]="false" [multiple]="false" formControlName="id_Cidade">
+
+                  <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                    <div class="form-control bg-info">
+                        <h6 class="card-text" >{{item.nome}} / {{item.uf}}</h6>
+                    </div>
+                      <ng-template  ng-label-tmp let-item="item">
+                        <div *ngIf="item.nome !== ''" class="form-group">
+                          {{item.nome}} / {{item.uf}}
+                        </div>
+
+                      </ng-template>
+                  </ng-template>
+
+              </ng-select>
+
+
+
+          <div *ngIf="f.id_Cidade.touched && f.id_Cidade.invalid" class="alert alert-danger">
+              <div *ngIf="f.id_Cidade.errors.required">Cidade is required.</div>
+          </div>
+      </div>
+
+      <div class="float-right">
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+  </form>
+
+  </div>
+  </div>
+
+</div>
