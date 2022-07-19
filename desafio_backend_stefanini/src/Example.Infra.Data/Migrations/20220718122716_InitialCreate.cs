@@ -11,9 +11,9 @@ namespace Example.Infra.Data.Migrations
             migrationBuilder.EnsureSchema(
                 name: "dbo");
 
-            migrationBuilder.DropTable(schema: "dbo", name: "Example");
-            migrationBuilder.DropTable(schema: "dbo", name: "Pessoa");
-            migrationBuilder.DropTable(schema: "dbo", name: "Cidade");
+            //migrationBuilder.DropTable(schema: "dbo", name: "Example");
+           // migrationBuilder.DropTable(schema: "dbo", name: "Pessoa");
+           // migrationBuilder.DropTable(schema: "dbo", name: "Cidade");
 
             migrationBuilder.CreateTable(
                 name: "Cidade",
